@@ -18,9 +18,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SortRecord {
-    public static void main(String[] args) throws IOException {
-        CsvParser csvParser=new CsvParser();
-        CSVParser csvFile=csvParser.getParseFile("F:\\qnaProject\\NewStreamOperation\\covid-assignment\\data\\day_wise.csv");
+    public void getSortedData(CSVParser csvParser) throws IOException {
+        CSVParser csvFile=csvParser;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         List<CovidRecord> records=new ArrayList<>();
         for(CSVRecord csvRecord:csvFile)
@@ -35,7 +34,6 @@ public class SortRecord {
             CovidRecord covidRecord=new CovidRecord(date,confirmed,death,recovered,active);
             records.add(covidRecord);
         }
-       // System.out.println(records);
         Collections.sort(records, Comparator.comparing(CovidRecord::getDate));
         for (CovidRecord covidRecord:records)
         {
